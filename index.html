@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Florian Marianne</title>
+  <meta name="description" content="Étudiant en informatique à l'Université de La Réunion — IA, dev & projets personnels." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black:   #070707;
+      --white:   #f0ede8;
+      --muted:   rgba(240, 237, 232, 0.38);
+      --border:  rgba(240, 237, 232, 0.1);
+      --hover-bg: rgba(240, 237, 232, 0.055);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Cormorant Garamond', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3.5rem 1.5rem 5rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ── Grain overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Floral SVG background ── */
+    .floral-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      opacity: 0.055;
+      z-index: 0;
+    }
+
+    /* ── Main content ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── Avatar ── */
+    .avatar-wrap {
+      position: relative;
+      width: 92px; height: 92px;
+      margin-bottom: 1.6rem;
+      animation: fadeDown 0.9s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    .avatar-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 0.5px solid rgba(240,237,232,0.12);
+    }
+
+    .avatar-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -16px;
+      border-radius: 50%;
+      border: 0.5px solid rgba(240,237,232,0.05);
+    }
+
+    .avatar {
+      width: 92px; height: 92px;
+      border-radius: 50%;
+      border: 0.5px solid rgba(240,237,232,0.22);
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-letter {
+      font-family: 'Cinzel', serif;
+      font-size: 34px;
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: 0.05em;
+      line-height: 1;
+    }
+
+    /* ── Identity ── */
+    .name {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      color: var(--white);
+      text-transform: uppercase;
+      margin-bottom: 0.45rem;
+      animation: fadeDown 0.9s 0.1s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    .tagline {
+      font-size: 14px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-align: center;
+      line-height: 1.6;
+      margin-bottom: 2.6rem;
+      animation: fadeDown 0.9s 0.18s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    /* ── Ornamental divider ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 2.6rem;
+      animation: fadeDown 0.9s 0.24s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .divider-line { flex: 1; height: 0.5px; background: var(--border); }
+    .divider-diamond {
+      width: 5px; height: 5px;
+      border: 0.5px solid rgba(240,237,232,0.3);
+      transform: rotate(45deg);
+    }
+
+    /* ── Links ── */
+    .links { width: 100%; display: flex; flex-direction: column; gap: 11px; }
+
+    .link {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 20px;
+      background: transparent;
+      border: 0.5px solid var(--border);
+      border-radius: 1px;
+      text-decoration: none;
+      color: var(--white);
+      transition: background 0.3s ease, border-color 0.3s ease, transform 0.25s ease;
+      opacity: 0;
+      animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+
+    .link:hover {
+      background: var(--hover-bg);
+      border-color: rgba(240,237,232,0.25);
+      transform: translateX(4px);
+    }
+
+    .link-icon {
+      width: 34px; height: 34px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0.65;
+    }
+
+    .link-icon svg { width: 22px; height: 22px; }
+
+    .link-body { flex: 1; }
+
+    .link-label {
+      font-family: 'Cinzel', serif;
+      font-size: 11.5px;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .link-sub {
+      font-size: 12px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .link-arrow {
+      font-size: 14px;
+      color: rgba(240,237,232,0.2);
+      transition: color 0.25s, transform 0.25s;
+    }
+
+    .link:hover .link-arrow {
+      color: rgba(240,237,232,0.55);
+      transform: translateX(3px);
+    }
+
+    .link:nth-child(1) { animation-delay: 0.38s; }
+    .link:nth-child(2) { animation-delay: 0.48s; }
+    .link:nth-child(3) { animation-delay: 0.58s; }
+    .link:nth-child(4) { animation-delay: 0.68s; }
+    .link:nth-child(5) { animation-delay: 0.78s; }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 3.2rem;
+      font-size: 11px;
+      font-style: italic;
+      color: rgba(240,237,232,0.16);
+      letter-spacing: 0.1em;
+      animation: fadeDown 1s 1.1s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Mobile polish ── */
+    @media (max-width: 480px) {
+      body { padding: 2.5rem 1.2rem 4rem; }
+      .name { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floral background -->
+<svg class="floral-bg" viewBox="0 0 800 900" xmlns="http://www.w3.org/2000/svg" fill="white" aria-hidden="true">
+  <!-- Top left cluster -->
+  <g>
+    <path d="M55,110 Q80,55 125,78 Q92,102 55,110Z"/>
+    <path d="M125,78 Q162,38 182,78 Q152,90 125,78Z"/>
+    <path d="M182,78 Q210,50 222,90 Q196,96 182,78Z"/>
+    <circle cx="138" cy="108" r="5"/>
+    <circle cx="172" cy="92" r="3.5"/>
+    <path d="M90,148 Q112,126 134,142 Q112,154 90,148Z"/>
+    <path d="M134,142 Q150,123 165,139 Q148,150 134,142Z"/>
+    <circle cx="140" cy="160" r="6"/>
+    <line x1="140" y1="166" x2="138" y2="215" stroke="white" stroke-width="0.8"/>
+    <path d="M138,186 Q126,180 123,188 Q132,193 138,186Z"/>
+    <path d="M138,200 Q150,194 152,202 Q145,208 138,200Z"/>
+    <circle cx="138" cy="215" r="3"/>
+    <path d="M60,220 Q88,210 98,225 Q78,232 60,220Z"/>
+    <path d="M98,225 Q115,215 122,228 Q108,236 98,225Z"/>
+  </g>
+  <!-- Top right cluster -->
+  <g>
+    <path d="M632,65 Q655,25 688,45 Q662,65 632,65Z"/>
+    <path d="M688,45 Q715,18 730,45 Q706,56 688,45Z"/>
+    <circle cx="682" cy="78" r="5.5"/>
+    <line x1="682" y1="84" x2="680" y2="138" stroke="white" stroke-width="0.8"/>
+    <path d="M680,108 Q665,102 663,112 Q672,116 680,108Z"/>
+    <path d="M680,124 Q695,118 697,128 Q688,134 680,124Z"/>
+    <path d="M660,162 Q678,138 700,152 Q684,166 660,162Z"/>
+    <path d="M700,152 Q718,132 738,146 Q720,159 700,152Z"/>
+    <circle cx="700" cy="174" r="5"/>
+    <circle cx="682" cy="178" r="3.5"/>
+    <path d="M720,80 Q740,65 755,80 Q738,88 720,80Z"/>
+  </g>
+  <!-- Bottom left -->
+  <g>
+    <path d="M42,740 Q62,698 96,716 Q70,733 42,740Z"/>
+    <path d="M96,716 Q116,688 132,706 Q114,720 96,716Z"/>
+    <circle cx="90" cy="750" r="4.5"/>
+    <line x1="90" y1="755" x2="88" y2="808" stroke="white" stroke-width="0.8"/>
+    <path d="M88,778 Q74,772 71,780 Q80,785 88,778Z"/>
+    <path d="M88,794 Q102,788 104,797 Q96,803 88,794Z"/>
+    <circle cx="78" cy="820" r="3"/>
+    <path d="M48,810 Q68,800 78,815 Q60,822 48,810Z"/>
+  </g>
+  <!-- Bottom right -->
+  <g>
+    <path d="M692,798 Q708,764 736,778 Q714,793 692,798Z"/>
+    <path d="M736,778 Q755,752 767,770 Q750,780 736,778Z"/>
+    <circle cx="730" cy="808" r="4.5"/>
+    <line x1="730" y1="812" x2="728" y2="860" stroke="white" stroke-width="0.8"/>
+    <path d="M728,832 Q714,826 712,834 Q722,839 728,832Z"/>
+    <path d="M728,847 Q742,841 744,850 Q736,856 728,847Z"/>
+    <circle cx="750" cy="820" r="3"/>
+  </g>
+  <!-- Top center small -->
+  <g opacity="0.6">
+    <path d="M375,14 Q395,0 415,12 Q395,24 375,14Z"/>
+    <path d="M355,16 Q368,2 380,14 Q365,22 355,16Z"/>
+    <path d="M415,12 Q430,0 442,12 Q428,20 415,12Z"/>
+    <circle cx="397" cy="26" r="3.5"/>
+  </g>
+  <!-- Bottom center small -->
+  <g opacity="0.5">
+    <path d="M365,876 Q385,858 405,870 Q384,882 365,876Z"/>
+    <path d="M344,878 Q358,862 372,872 Q356,882 344,878Z"/>
+    <path d="M405,870 Q422,855 436,866 Q420,876 405,870Z"/>
+    <circle cx="388" cy="885" r="3"/>
+  </g>
+</svg>
+
+<div class="page">
+
+  <div class="avatar-wrap" aria-hidden="true">
+    <div class="avatar">
+      <span class="avatar-letter">F</span>
+    </div>
+  </div>
+
+  <h1 class="name">Florian Marianne</h1>
+
+  <p class="tagline">
+    étudiant en informatique · Université de La Réunion<br>
+    IA &amp; développement
+  </p>
+
+  <div class="divider" aria-hidden="true">
+    <div class="divider-line"></div>
+    <div class="divider-diamond"></div>
+    <div class="divider-line"></div>
+  </div>
+
+  <nav class="links" aria-label="Liens">
+
+    <a class="link" href="https://github.com/florianm974" target="_blank" rel="noopener noreferrer">
+      <div class="link-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.17-1.11-1.48-1.11-1.48-.91-.63.07-.62.07-.62 1.01.07 1.54 1.06 1.54 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.38 9.38 0 0 1 12 6.84c.85 0 1.71.12 2.51.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.49A10.27 10.27 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/>
+        </svg>
+      </div>
+      <div class="link-body">
+        <div class="link-label">GitHub</div>
+        <div class="link-sub">projets &amp; code source</div>
+      </div>
+      <span class="link-arrow" aria-hidden="true">→</span>
+    </a>
+
+    <a class="link" href="https://www.linkedin.com/in/florian-marianne/" target="_blank" rel="noopener noreferrer">
+      <div class="link-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM8.5 17H6V10h2.5v7ZM7.25 8.9A1.44 1.44 0 1 1 8.69 7.46 1.44 1.44 0 0 1 7.25 8.9ZM18 17h-2.5v-3.5c0-1-.38-1.5-1.13-1.5S13 12.54 13 13.5V17h-2.5V10H13v1a2.71 2.71 0 0 1 2.38-1.25C17 9.75 18 10.88 18 13.13Z"/>
+        </svg>
+      </div>
+      <div class="link-body">
+        <div class="link-label">LinkedIn</div>
+        <div class="link-sub">profil professionnel</div>
+      </div>
+      <span class="link-arrow" aria-hidden="true">→</span>
+    </a>
+
+    <a class="link" href="mailto:flo.marianne31@proton.me">
+      <div class="link-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+          <rect x="2" y="5" width="20" height="14" rx="1.5"/>
+          <path d="M2 7l10 7 10-7"/>
+        </svg>
+      </div>
+      <div class="link-body">
+        <div class="link-label">Contact</div>
+        <div class="link-sub">flo.marianne31@proton.me</div>
+      </div>
+      <span class="link-arrow" aria-hidden="true">→</span>
+    </a>
+
+  </nav>
+
+  <p class="footer">La Réunion · 2026</p>
+
+</div>
+
+</body>
+</html>
