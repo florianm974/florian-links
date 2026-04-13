@@ -1,6 +1,6 @@
 # florian-links
 
-Personal linktree — built with HTML, CSS & JS.
+Personal linktree built with HTML, CSS & JS.
 
 **Live →** [florianm974.github.io/florian-links](https://florianm974.github.io/florian-links)
 
