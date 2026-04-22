@@ -4,9 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Florian Marianne</title>
+    <meta name="theme-color" content="#070707" />
     <meta
       name="description"
       content="Computer Science student at University of La Reunion - AI, dev & personal projects."
+    />
+    <link rel="canonical" href="https://florianm974.github.io/florian-links/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Florian Marianne" />
+    <meta
+      property="og:description"
+      content="Computer Science student at University of La Reunion - AI, dev & personal projects."
+    />
+    <meta
+      property="og:url"
+      content="https://florianm974.github.io/florian-links/"
+    />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/florianm974/florian-links/main/avatar.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Florian Marianne" />
+    <meta
+      name="twitter:description"
+      content="Computer Science student at University of La Reunion - AI, dev & personal projects."
+    />
+    <meta
+      name="twitter:image"
+      content="https://raw.githubusercontent.com/florianm974/florian-links/main/avatar.jpg"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,17 +45,66 @@
       rel="stylesheet"
     />
     <script>
-      function toggleTheme() {
-        document.documentElement.classList.toggle("light");
-        localStorage.setItem(
-          "theme",
-          document.documentElement.classList.contains("light")
-            ? "light"
-            : "dark",
-        );
-      }
-      if (localStorage.getItem("theme") === "light")
-        document.documentElement.classList.add("light");
+      (function () {
+        function setThemeState() {
+          var button = document.getElementById("theme-toggle");
+          if (!button) return;
+          button.setAttribute(
+            "aria-pressed",
+            String(document.documentElement.classList.contains("light")),
+          );
+        }
+
+        function toggleTheme() {
+          document.documentElement.classList.toggle("light");
+          try {
+            localStorage.setItem(
+              "theme",
+              document.documentElement.classList.contains("light")
+                ? "light"
+                : "dark",
+            );
+          } catch (error) {
+            // localStorage can be unavailable in restricted contexts.
+          }
+          setThemeState();
+        }
+
+        try {
+          if (localStorage.getItem("theme") === "light") {
+            document.documentElement.classList.add("light");
+          }
+        } catch (error) {
+          // Keep default dark theme when storage is unavailable.
+        }
+
+        window.addEventListener("DOMContentLoaded", function () {
+          var themeButton = document.getElementById("theme-toggle");
+          if (themeButton) {
+            themeButton.addEventListener("click", toggleTheme);
+            setThemeState();
+          }
+
+          var avatarImage = document.getElementById("avatar-image");
+          if (!avatarImage) return;
+
+          avatarImage.addEventListener(
+            "error",
+            function () {
+              avatarImage.style.display = "none";
+
+              var fallback = document.createElement("div");
+              fallback.className = "avatar-fallback";
+              fallback.textContent = "F";
+
+              if (avatarImage.parentElement) {
+                avatarImage.parentElement.appendChild(fallback);
+              }
+            },
+            { once: true },
+          );
+        });
+      })();
     </script>
     <style>
       *,
@@ -132,6 +207,10 @@
         background: var(--hover);
         color: var(--fg);
       }
+      .theme-btn:focus-visible {
+        outline: 2px solid var(--fg);
+        outline-offset: 2px;
+      }
       .theme-btn svg {
         width: 16px;
         height: 16px;
@@ -199,6 +278,16 @@
       }
       .avatar:hover img {
         filter: grayscale(0%);
+      }
+      .avatar-fallback {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Cinzel", serif;
+        font-size: 32px;
+        color: var(--fg);
       }
 
       .name {
@@ -283,6 +372,11 @@
       .link:hover {
         border-color: var(--border2);
         transform: translateX(5px);
+      }
+      .link:focus-visible {
+        border-color: var(--fg);
+        outline: 2px solid var(--fg);
+        outline-offset: 2px;
       }
       .link:hover::before {
         width: 100%;
@@ -401,10 +495,28 @@
           font-size: 17px;
         }
       }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
     </style>
   </head>
   <body>
-    <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+    <button
+      id="theme-toggle"
+      class="theme-btn"
+      aria-label="Toggle theme"
+      aria-pressed="false"
+      type="button"
+    >
       <svg
         class="icon-moon"
         viewBox="0 0 24 24"
@@ -525,17 +637,16 @@
       </g>
     </svg>
 
-    <div class="page">
+    <main class="page">
       <div class="avatar-wrap" aria-hidden="true">
         <div class="avatar">
           <img
+            id="avatar-image"
             src="https://raw.githubusercontent.com/florianm974/florian-links/main/avatar.jpg"
             alt="Florian Marianne"
-            onerror="
-              this.style.display = 'none';
-              this.parentElement.innerHTML =
-                '<div style=&quot;display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-family:Cinzel,serif;font-size:32px;color:var(--fg);&quot;>F</div>';
-            "
+            width="100"
+            height="100"
+            decoding="async"
           />
         </div>
       </div>
@@ -667,6 +778,6 @@
       </nav>
 
       <p class="footer">La R&eacute;union &middot; 2026</p>
-    </div>
+    </main>
   </body>
 </html>
