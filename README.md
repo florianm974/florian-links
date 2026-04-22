@@ -1,39 +1,39 @@
 # florian-links
 
-Page de liens personnelle minimaliste — alternative à Linktree, sans trackers ni dépendances.
+Minimalist personal link page — a self-hosted alternative to Linktree, with no trackers or dependencies.
 
 **Live →** [florianm974.github.io/florian-links](https://florianm974.github.io/florian-links)
 
 ---
 
-## Aperçu
+## Overview
 
-> Une page de liens propre, légère et entièrement sous contrôle — conçue comme un projet à part entière, pas comme un simple compte sur une plateforme tierce.
+> A clean, lightweight link page built as a proper project — not just an account on a third-party platform.
 
 ---
 
-## Fonctionnalités
+## Features
 
-- **Thème clair / sombre** avec bascule accessible et mémorisation locale
-- **Avatar avec fallback** — affiche une initiale si l'image ne charge pas
-- **Animations CSS** fluides à l'entrée de page (stagger sur les liens)
-- **SEO & Open Graph** — balises meta complètes pour un partage soigné
-- **Accessibilité** — navigation clavier, `aria-label`, `aria-pressed`, focus visible
-- **Responsive** — adapté mobile et desktop
-- **Zéro dépendance** — pas de framework, pas de bibliothèque externe
+- **Light / dark theme** with accessible toggle and local preference storage
+- **Avatar with fallback** — displays an initial if the image fails to load
+- **Smooth CSS animations** on page load with staggered link reveals
+- **SEO & Open Graph** — full meta tags for clean social sharing
+- **Accessibility** — keyboard navigation, `aria-label`, `aria-pressed`, visible focus
+- **Responsive** — mobile and desktop ready
+- **Zero dependencies** — no framework, no external library
 
 ---
 
 ## Stack
 
-- HTML / CSS / JS vanilla — aucune dépendance, aucun build tool
-- Hébergement GitHub Pages
+- HTML / CSS / vanilla JS — no dependencies, no build tools
+- Hosted on GitHub Pages
 
 ---
 
-## Pourquoi ne pas utiliser Linktree ?
+## Why not just use Linktree?
 
-Contrôle total sur le design et les données. Pas de trackers tiers, pas de publicités, aucun service externe qui collecte des analytics sur les visiteurs. Le code est ouvert et modifiable à volonté.
+Full control over design and data. No third-party trackers, no ads, no external service collecting analytics on visitors. The code is open and freely customizable.
 
 ---
 
@@ -41,24 +41,24 @@ Contrôle total sur le design et les données. Pas de trackers tiers, pas de pub
 
 ```
 florian-links/
-├── index.html     # Tout-en-un : structure, styles et scripts
-└── avatar.jpg     # Photo de profil
+├── index.html     # All-in-one: structure, styles and scripts
+└── avatar.jpg     # Profile picture
 ```
 
 ---
 
-## Utilisation locale
+## Local usage
 
-Aucune installation requise. Ouvre simplement `index.html` dans un navigateur, ou clone le repo et personnalise directement le HTML.
+No installation required. Simply open `index.html` in a browser, or clone the repo and edit the HTML directly.
 
 ```bash
 git clone https://github.com/florianm974/florian-links.git
 cd florian-links
-# ouvrir index.html dans le navigateur
+# open index.html in your browser
 ```
 
 ---
 
-## Licence
+## License
 
-MIT — voir [LICENSE](LICENSE)
+MIT — see [LICENSE](LICENSE)
