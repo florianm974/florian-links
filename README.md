@@ -37,28 +37,6 @@ Full control over design and data. No third-party trackers, no ads, no external 
 
 ---
 
-## Structure
-
-```
-florian-links/
-├── index.html     # All-in-one: structure, styles and scripts
-└── avatar.jpg     # Profile picture
-```
-
----
-
-## Local usage
-
-No installation required. Simply open `index.html` in a browser, or clone the repo and edit the HTML directly.
-
-```bash
-git clone https://github.com/florianm974/florian-links.git
-cd florian-links
-# open index.html in your browser
-```
-
----
-
 ## License
 
 MIT — see [LICENSE](LICENSE)
