@@ -496,6 +496,37 @@
         }
       }
 
+      /* ── Floating petals ── */
+      .petals-float {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 0;
+      }
+      .petals-float svg {
+        position: absolute;
+        top: -40px;
+        fill: var(--floral-fill);
+        opacity: 0;
+        animation: petalDrift linear forwards;
+      }
+      @keyframes petalDrift {
+        0%   { transform: translateY(0) rotate(0deg) scale(1);   opacity: 0; }
+        8%   { opacity: 0.12; }
+        88%  { opacity: 0.09; }
+        100% { transform: translateY(110vh) rotate(400deg) scale(0.7); opacity: 0; }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 2.5rem 1.2rem 4rem;
+        }
+        .name {
+          font-size: 17px;
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
@@ -510,6 +541,8 @@
     </style>
   </head>
   <body>
+    <div class="petals-float" aria-hidden="true" id="petals-container"></div>
+
     <button
       id="theme-toggle"
       class="theme-btn"
@@ -662,8 +695,23 @@
         <div class="divider-diamond"></div>
         <div class="divider-line"></div>
       </div>
-
+      
       <nav class="links" aria-label="Links">
+
+        <a class="link" href="https://florianm974.github.io/portfolio/" target="_blank" rel="noopener noreferrer">
+          <div class="link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+              <rect x="2" y="3" width="20" height="14" rx="1.5" />
+              <path d="M2 7h20M7 3v4M12 3v4M17 3v4" />
+            </svg>
+          </div>
+          <div class="link-body">
+            <div class="link-label">Portfolio</div>
+            <div class="link-sub">projets · stack · contact</div>
+          </div>
+          <span class="link-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+
         <a
           class="link"
           href="https://github.com/florianm974"
@@ -731,32 +779,6 @@
           <span class="link-arrow" aria-hidden="true">&rarr;</span>
         </a>
 
-        <a
-          class="link"
-          href="https://florianm974.github.io/KSOS/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div class="link-icon" aria-hidden="true">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.4"
-            >
-              <rect x="2" y="3" width="20" height="14" rx="1.5" />
-              <path d="M8 21h8M12 17v4" />
-            </svg>
-          </div>
-          <div class="link-body">
-            <div class="link-label">KSOS</div>
-            <div class="link-sub">
-              collective dev portal &mdash; games &amp; projects
-            </div>
-          </div>
-          <span class="link-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-
         <a class="link" href="mailto:flo.marianne31@proton.me">
           <div class="link-icon" aria-hidden="true">
             <svg
@@ -779,5 +801,52 @@
 
       <p class="footer">La R&eacute;union &middot; 2026</p>
     </main>
+    <script>
+      (function () {
+        var SHAPES = [
+          "M0 12 Q6 0 12 12 Q6 24 0 12Z",
+          "M0 8 Q10 0 18 8 Q10 17 0 8Z",
+          "M2 14 Q8 0 14 6 Q10 20 2 14Z",
+          "M0 10 Q5 1 11 5 Q9 18 0 10Z"
+        ];
+
+        var container = document.getElementById("petals-container");
+        if (!container) return;
+
+        var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (prefersReduced) return;
+
+        function spawnPetal() {
+          var size = 9 + Math.random() * 14;
+          var left = Math.random() * 100;
+          var dur  = 9 + Math.random() * 14;
+          var delay = 0;
+
+          var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          svg.setAttribute("viewBox", "0 0 18 24");
+          svg.style.cssText = [
+            "width:" + size + "px",
+            "height:" + (size * 1.4) + "px",
+            "left:" + left + "%",
+            "animation-duration:" + dur + "s",
+            "animation-delay:" + delay + "s"
+          ].join(";");
+
+          var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+          path.setAttribute("d", SHAPES[Math.floor(Math.random() * SHAPES.length)]);
+          svg.appendChild(path);
+          container.appendChild(svg);
+
+          setTimeout(function () {
+            if (svg.parentNode) svg.parentNode.removeChild(svg);
+          }, (dur + delay) * 1000 + 200);
+        }
+
+        for (var i = 0; i < 10; i++) {
+          setTimeout(spawnPetal, Math.random() * 6000);
+        }
+        setInterval(spawnPetal, 2200);
+      })();
+    </script>
   </body>
 </html>
