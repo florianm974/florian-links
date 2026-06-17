@@ -1,42 +1,42 @@
 # florian-links
 
-Minimalist personal link page — a self-hosted alternative to Linktree, with no trackers or dependencies.
+Page de liens personnelle minimaliste — une alternative auto-hébergée à Linktree, sans traqueurs ni dépendances.
 
 **Live →** [florianm974.github.io/florian-links](https://florianm974.github.io/florian-links)
 
 ---
 
-## Overview
+## Présentation
 
-> A clean, lightweight link page built as a proper project — not just an account on a third-party platform.
+> Une page de liens légère et élégante, construite comme un vrai projet — pas juste un compte sur une plateforme tierce.
 
 ---
 
-## Features
+## Fonctionnalités
 
-- **Light / dark theme** with accessible toggle and local preference storage
-- **Avatar with fallback** — displays an initial if the image fails to load
-- **Smooth CSS animations** on page load with staggered link reveals
-- **SEO & Open Graph** — full meta tags for clean social sharing
-- **Accessibility** — keyboard navigation, `aria-label`, `aria-pressed`, visible focus
-- **Responsive** — mobile and desktop ready
-- **Zero dependencies** — no framework, no external library
+- **Thème clair / sombre** avec bascule accessible et stockage local de la préférence
+- **Avatar avec fallback** — affiche une initiale si l'image ne charge pas
+- **Animations CSS fluides** au chargement avec apparition progressive des liens
+- **SEO & Open Graph** — balises complètes pour un partage propre sur les réseaux
+- **Accessibilité** — navigation au clavier, `aria-label`, `aria-pressed`, focus visible
+- **Responsive** — adapté mobile et desktop
+- **Zéro dépendance** — aucun framework, aucune bibliothèque externe
 
 ---
 
 ## Stack
 
-- HTML / CSS / vanilla JS — no dependencies, no build tools
-- Hosted on GitHub Pages
+- HTML / CSS / vanilla JS — sans dépendances, sans outil de build
+- Hébergé sur GitHub Pages
 
 ---
 
-## Why not just use Linktree?
+## Pourquoi ne pas utiliser Linktree ?
 
-Full control over design and data. No third-party trackers, no ads, no external service collecting analytics on visitors. The code is open and freely customizable.
+Contrôle total sur le design et les données. Pas de traqueurs tiers, pas de pub, aucun service externe qui collecte des analytics sur les visiteurs. Le code est ouvert et librement modifiable.
 
 ---
 
-## License
+## Licence
 
-MIT — see [LICENSE](LICENSE)
+MIT — voir [LICENSE](LICENSE)
