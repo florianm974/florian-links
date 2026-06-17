@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Florian Marianne</title>
-    <meta name="theme-color" content="#070707" />
+    <meta name="theme-color" content="#06050c" />
     <meta
       name="description"
       content="Étudiant en Licence Informatique à l'Université de La Réunion - IA, dev & projets personnels."
@@ -41,7 +41,7 @@
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
     <script>
@@ -116,25 +116,35 @@
       }
 
       :root {
-        --bg: #070707;
-        --surface: #111;
-        --fg: #f0ede8;
-        --muted: rgba(240, 237, 232, 0.38);
-        --border: rgba(240, 237, 232, 0.1);
-        --border2: rgba(240, 237, 232, 0.22);
-        --hover: rgba(240, 237, 232, 0.06);
-        --floral-fill: white;
+        --bg: #06050c;
+        --surface: #0d0b18;
+        --fg: #ddd5c8;
+        --gold: #c9a96e;
+        --gold-light: #e6c98e;
+        --gold-glow: rgba(201,169,110,.09);
+        --purple: #7040a8;
+        --purple-soft: #9b70d0;
+        --muted: #5a5568;
+        --text-soft: #9a9088;
+        --border: rgba(201,169,110,.2);
+        --border-soft: rgba(201,169,110,.08);
+        --hover: rgba(201,169,110,.06);
       }
 
       html.light {
         --bg: #f5f2ed;
         --surface: #ebe7e0;
         --fg: #1a1815;
-        --muted: rgba(26, 24, 21, 0.45);
-        --border: rgba(26, 24, 21, 0.12);
-        --border2: rgba(26, 24, 21, 0.25);
-        --hover: rgba(26, 24, 21, 0.05);
-        --floral-fill: #1a1815;
+        --gold: #b8944e;
+        --gold-light: #8a6f3a;
+        --gold-glow: rgba(184,148,78,.08);
+        --purple: #7040a8;
+        --purple-soft: #8a5cc0;
+        --muted: rgba(26,24,21,.45);
+        --text-soft: rgba(26,24,21,.55);
+        --border: rgba(26,24,21,.15);
+        --border-soft: rgba(26,24,21,.08);
+        --hover: rgba(26,24,21,.05);
       }
 
       html {
@@ -162,8 +172,9 @@
         content: "";
         position: fixed;
         inset: 0;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        opacity: 0.025;
+        background:
+          radial-gradient(ellipse 100% 70% at 10% 0%, rgba(112,64,168,.09) 0%, transparent 55%),
+          radial-gradient(ellipse 80% 60% at 90% 100%, rgba(201,169,110,.05) 0%, transparent 50%);
         pointer-events: none;
         z-index: 0;
       }
@@ -189,7 +200,7 @@
         right: 1.2rem;
         z-index: 10;
         background: transparent;
-        border: 0.5px solid var(--border2);
+        border: 0.5px solid var(--border);
         border-radius: 1px;
         width: 36px;
         height: 36px;
@@ -204,8 +215,9 @@
           color 0.25s;
       }
       .theme-btn:hover {
-        background: var(--hover);
-        color: var(--fg);
+        background: var(--gold-glow);
+        border-color: var(--gold);
+        color: var(--gold);
       }
       .theme-btn:focus-visible {
         outline: 2px solid var(--fg);
@@ -370,8 +382,10 @@
         transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       }
       .link:hover {
-        border-color: var(--border2);
-        transform: translateX(5px);
+        border-color: var(--gold);
+        background: var(--gold-glow);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px rgba(0,0,0,.5);
       }
       .link:focus-visible {
         border-color: var(--fg);
@@ -445,8 +459,8 @@
         z-index: 1;
       }
       .link:hover .link-arrow {
-        color: var(--fg);
-        transform: translateX(4px);
+        color: var(--gold);
+        transform: translateX(6px);
       }
 
       .footer {
@@ -496,37 +510,6 @@
         }
       }
 
-      /* ── Floating petals ── */
-      .petals-float {
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        overflow: hidden;
-        z-index: 0;
-      }
-      .petals-float svg {
-        position: absolute;
-        top: -40px;
-        fill: var(--floral-fill);
-        opacity: 0;
-        animation: petalDrift linear forwards;
-      }
-      @keyframes petalDrift {
-        0%   { transform: translateY(0) rotate(0deg) scale(1);   opacity: 0; }
-        8%   { opacity: 0.12; }
-        88%  { opacity: 0.09; }
-        100% { transform: translateY(110vh) rotate(400deg) scale(0.7); opacity: 0; }
-      }
-
-      @media (max-width: 480px) {
-        body {
-          padding: 2.5rem 1.2rem 4rem;
-        }
-        .name {
-          font-size: 17px;
-        }
-      }
-
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
@@ -541,8 +524,6 @@
     </style>
   </head>
   <body>
-    <div class="petals-float" aria-hidden="true" id="petals-container"></div>
-
     <button
       id="theme-toggle"
       class="theme-btn"
@@ -577,98 +558,6 @@
         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
       </svg>
     </button>
-
-    <svg
-      class="floral-bg"
-      viewBox="0 0 800 900"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="var(--floral-fill)"
-      aria-hidden="true"
-    >
-      <g>
-        <path d="M55,110 Q80,55 125,78 Q92,102 55,110Z" />
-        <path d="M125,78 Q162,38 182,78 Q152,90 125,78Z" />
-        <path d="M182,78 Q210,50 222,90 Q196,96 182,78Z" />
-        <circle cx="138" cy="108" r="5" />
-        <circle cx="172" cy="92" r="3.5" />
-        <path d="M90,148 Q112,126 134,142 Q112,154 90,148Z" />
-        <path d="M134,142 Q150,123 165,139 Q148,150 134,142Z" />
-        <circle cx="140" cy="160" r="6" />
-        <line
-          x1="140"
-          y1="166"
-          x2="138"
-          y2="215"
-          stroke="var(--floral-fill)"
-          stroke-width="0.8"
-        />
-        <path d="M138,186 Q126,180 123,188 Q132,193 138,186Z" />
-        <path d="M138,200 Q150,194 152,202 Q145,208 138,200Z" />
-        <circle cx="138" cy="215" r="3" />
-        <path d="M60,220 Q88,210 98,225 Q78,232 60,220Z" />
-        <path d="M98,225 Q115,215 122,228 Q108,236 98,225Z" />
-      </g>
-      <g>
-        <path d="M632,65 Q655,25 688,45 Q662,65 632,65Z" />
-        <path d="M688,45 Q715,18 730,45 Q706,56 688,45Z" />
-        <circle cx="682" cy="78" r="5.5" />
-        <line
-          x1="682"
-          y1="84"
-          x2="680"
-          y2="138"
-          stroke="var(--floral-fill)"
-          stroke-width="0.8"
-        />
-        <path d="M680,108 Q665,102 663,112 Q672,116 680,108Z" />
-        <path d="M680,124 Q695,118 697,128 Q688,134 680,124Z" />
-        <path d="M660,162 Q678,138 700,152 Q684,166 660,162Z" />
-        <path d="M700,152 Q718,132 738,146 Q720,159 700,152Z" />
-        <circle cx="700" cy="174" r="5" />
-        <circle cx="682" cy="178" r="3.5" />
-        <path d="M720,80 Q740,65 755,80 Q738,88 720,80Z" />
-      </g>
-      <g opacity="0.6">
-        <path d="M42,740 Q62,698 96,716 Q70,733 42,740Z" />
-        <path d="M96,716 Q116,688 132,706 Q114,720 96,716Z" />
-        <circle cx="90" cy="750" r="4.5" />
-        <line
-          x1="90"
-          y1="755"
-          x2="88"
-          y2="808"
-          stroke="var(--floral-fill)"
-          stroke-width="0.8"
-        />
-        <path d="M88,778 Q74,772 71,780 Q80,785 88,778Z" />
-        <path d="M88,794 Q102,788 104,797 Q96,803 88,794Z" />
-      </g>
-      <g opacity="0.6">
-        <path d="M692,798 Q708,764 736,778 Q714,793 692,798Z" />
-        <path d="M736,778 Q755,752 767,770 Q750,780 736,778Z" />
-        <circle cx="730" cy="808" r="4.5" />
-        <line
-          x1="730"
-          y1="812"
-          x2="728"
-          y2="860"
-          stroke="var(--floral-fill)"
-          stroke-width="0.8"
-        />
-        <path d="M728,832 Q714,826 712,834 Q722,839 728,832Z" />
-        <path d="M728,847 Q742,841 744,850 Q736,856 728,847Z" />
-      </g>
-      <g opacity="0.4">
-        <path d="M375,14 Q395,0 415,12 Q395,24 375,14Z" />
-        <path d="M355,16 Q368,2 380,14 Q365,22 355,16Z" />
-        <path d="M415,12 Q430,0 442,12 Q428,20 415,12Z" />
-        <circle cx="397" cy="26" r="3.5" />
-        <path d="M365,876 Q385,858 405,870 Q384,882 365,876Z" />
-        <path d="M344,878 Q358,862 372,872 Q356,882 344,878Z" />
-        <path d="M405,870 Q422,855 438,866 Q420,876 405,870Z" />
-        <circle cx="388" cy="885" r="3" />
-      </g>
-    </svg>
 
     <main class="page">
       <div class="avatar-wrap" aria-hidden="true">
@@ -801,52 +690,5 @@
 
       <p class="footer">La R&eacute;union &middot; 2026</p>
     </main>
-    <script>
-      (function () {
-        var SHAPES = [
-          "M0 12 Q6 0 12 12 Q6 24 0 12Z",
-          "M0 8 Q10 0 18 8 Q10 17 0 8Z",
-          "M2 14 Q8 0 14 6 Q10 20 2 14Z",
-          "M0 10 Q5 1 11 5 Q9 18 0 10Z"
-        ];
-
-        var container = document.getElementById("petals-container");
-        if (!container) return;
-
-        var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if (prefersReduced) return;
-
-        function spawnPetal() {
-          var size = 9 + Math.random() * 14;
-          var left = Math.random() * 100;
-          var dur  = 9 + Math.random() * 14;
-          var delay = 0;
-
-          var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-          svg.setAttribute("viewBox", "0 0 18 24");
-          svg.style.cssText = [
-            "width:" + size + "px",
-            "height:" + (size * 1.4) + "px",
-            "left:" + left + "%",
-            "animation-duration:" + dur + "s",
-            "animation-delay:" + delay + "s"
-          ].join(";");
-
-          var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-          path.setAttribute("d", SHAPES[Math.floor(Math.random() * SHAPES.length)]);
-          svg.appendChild(path);
-          container.appendChild(svg);
-
-          setTimeout(function () {
-            if (svg.parentNode) svg.parentNode.removeChild(svg);
-          }, (dur + delay) * 1000 + 200);
-        }
-
-        for (var i = 0; i < 10; i++) {
-          setTimeout(spawnPetal, Math.random() * 6000);
-        }
-        setInterval(spawnPetal, 2200);
-      })();
-    </script>
   </body>
 </html>
