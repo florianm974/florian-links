@@ -8,7 +8,7 @@ Page de liens personnelle minimaliste — une alternative auto-hébergée à Lin
 
 ## Présentation
 
-> Une page de liens légère et élégante, construite comme un vrai projet — pas juste un compte sur une plateforme tierce.
+> Une page de liens. Légère. Sans plateforme tierce.
 
 ---
 
@@ -26,14 +26,14 @@ Page de liens personnelle minimaliste — une alternative auto-hébergée à Lin
 
 ## Stack
 
-- HTML / CSS / vanilla JS — sans dépendances, sans outil de build
+- HTML / CSS / vanilla JS
 - Hébergé sur GitHub Pages
 
 ---
 
 ## Pourquoi ne pas utiliser Linktree ?
 
-Contrôle total sur le design et les données. Pas de traqueurs tiers, pas de pub, aucun service externe qui collecte des analytics sur les visiteurs. Le code est ouvert et librement modifiable.
+Je maîtrise mon design, mes données et mon code. Pas de traqueurs, pas de pub, pas de boîte noire.
 
 ---
 
