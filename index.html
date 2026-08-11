@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Florian Marianne</title>
-    <meta name="theme-color" content="#06050c" />
+    <meta name="theme-color" content="#0a0a0a" />
     <meta
       name="description"
       content="Étudiant en Licence Informatique à l'Université de La Réunion - IA, dev & projets personnels."
@@ -38,10 +38,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="icon"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g fill='%23f4f4f4'><circle cx='25' cy='20' r='4'/><circle cx='45' cy='20' r='4'/><circle cx='65' cy='20' r='4'/><circle cx='25' cy='40' r='4'/><circle cx='25' cy='60' r='4'/><circle cx='25' cy='80' r='4'/><circle cx='45' cy='60' r='4'/><circle cx='65' cy='60' r='4'/></g></svg>"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
     <script>
@@ -116,35 +116,37 @@
       }
 
       :root {
-        --bg: #06050c;
-        --surface: #0d0b18;
-        --fg: #ddd5c8;
-        --gold: #c9a96e;
-        --gold-light: #e6c98e;
-        --gold-glow: rgba(201,169,110,.09);
-        --purple: #7040a8;
-        --purple-soft: #9b70d0;
-        --muted: #5a5568;
-        --text-soft: #9a9088;
-        --border: rgba(201,169,110,.2);
-        --border-soft: rgba(201,169,110,.08);
-        --hover: rgba(201,169,110,.06);
+        --bg: #0a0a0a;
+        --surface: #141414;
+        --fg: #f4f4f4;
+        --gold: #ff3d3d;
+        --gold-light: #ff6b6b;
+        --gold-glow: rgba(255,61,61,.14);
+        --purple: #ff3d3d;
+        --purple-soft: #ff6b6b;
+        --muted: #6e6e6e;
+        --text-soft: #a3a3a3;
+        --border: rgba(255,255,255,.16);
+        --border-soft: rgba(255,255,255,.08);
+        --hover: rgba(255,61,61,.06);
+        --border2: rgba(255,255,255,.25);
       }
 
       html.light {
-        --bg: #f5f2ed;
-        --surface: #ebe7e0;
-        --fg: #1a1815;
-        --gold: #b8944e;
-        --gold-light: #8a6f3a;
-        --gold-glow: rgba(184,148,78,.08);
-        --purple: #7040a8;
-        --purple-soft: #8a5cc0;
-        --muted: rgba(26,24,21,.45);
-        --text-soft: rgba(26,24,21,.55);
-        --border: rgba(26,24,21,.15);
-        --border-soft: rgba(26,24,21,.08);
-        --hover: rgba(26,24,21,.05);
+        --bg: #f4f4f4;
+        --surface: #ececec;
+        --fg: #111;
+        --gold: #dc2626;
+        --gold-light: #b91c1c;
+        --gold-glow: rgba(220,38,38,.12);
+        --purple: #dc2626;
+        --purple-soft: #b91c1c;
+        --muted: #777;
+        --text-soft: #444;
+        --border: rgba(0,0,0,.16);
+        --border-soft: rgba(0,0,0,.08);
+        --hover: rgba(220,38,38,.05);
+        --border2: rgba(0,0,0,.25);
       }
 
       html {
@@ -155,7 +157,7 @@
       body {
         background: var(--bg);
         color: var(--fg);
-        font-family: "Cormorant Garamond", serif;
+        font-family: "Space Grotesk", system-ui, sans-serif;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -172,26 +174,37 @@
         content: "";
         position: fixed;
         inset: 0;
-        background:
-          radial-gradient(ellipse 100% 70% at 10% 0%, rgba(112,64,168,.09) 0%, transparent 55%),
-          radial-gradient(ellipse 80% 60% at 90% 100%, rgba(201,169,110,.05) 0%, transparent 50%);
+        background-image: radial-gradient(var(--border) 1px, transparent 1.4px);
+        background-size: 30px 30px;
+        -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 0%, transparent 75%);
+        mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 0%, transparent 75%);
         pointer-events: none;
         z-index: 0;
       }
 
-      .floral-bg {
+      .cursor-follower {
         position: fixed;
-        inset: 0;
-        width: 100%;
-        height: 100%;
         pointer-events: none;
-        opacity: 0.055;
+        z-index: 9999;
+        width: 340px; height: 340px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,61,61,.08) 0%, transparent 65%);
+        transform: translate(-50%,-50%) scale(0);
+        opacity: 0;
+        transition: opacity .6s, transform .6s;
+        will-change: transform;
+      }
+      .cursor-follower.visible { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+
+      .glyph {
+        position: fixed;
+        pointer-events: none;
+        opacity: .6;
         z-index: 0;
-        transition: opacity 0.4s;
       }
-      html.light .floral-bg {
-        opacity: 0.08;
-      }
+      .glyph-tl { top: 28px; left: 24px; }
+      .glyph-br { bottom: 24px; right: 24px; transform: rotate(180deg); }
+      @media (max-width: 480px) { .glyph { display: none; } }
 
       /* theme toggle */
       .theme-btn {
@@ -297,31 +310,48 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: "Cinzel", serif;
+        font-family: "DotGothic16", monospace;
         font-size: 32px;
         color: var(--fg);
       }
 
       .name {
-        font-family: "Cinzel", serif;
-        font-size: 20px;
+        font-family: "DotGothic16", monospace;
+        font-size: clamp(24px, 7vw, 30px);
         font-weight: 400;
-        letter-spacing: 0.18em;
+        letter-spacing: 0.16em;
         color: var(--fg);
         text-transform: uppercase;
-        margin-bottom: 0.45rem;
+        margin-bottom: 0.5rem;
         animation: revealDown 1s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
       }
+      .name::before {
+        content: "/";
+        color: var(--gold);
+        margin-right: 0.4em;
+      }
+      .role {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        min-height: 1.5em;
+        text-align: center;
+        margin-bottom: 0.5rem;
+        animation: revealDown 1s 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      .role .caret { color: var(--fg); animation: blink 1s steps(1) infinite; }
+      @keyframes blink { 50% { opacity: 0; } }
       .tagline {
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 300;
-        font-style: italic;
         color: var(--muted);
         letter-spacing: 0.04em;
         text-align: center;
         line-height: 1.7;
-        margin-bottom: 2.6rem;
-        animation: revealDown 1s 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+        margin-bottom: 2.2rem;
+        animation: revealDown 1s 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
       }
 
       .divider {
@@ -435,7 +465,7 @@
         z-index: 1;
       }
       .link-label {
-        font-family: "Cinzel", serif;
+        font-family: "DotGothic16", monospace;
         font-size: 11.5px;
         font-weight: 400;
         letter-spacing: 0.16em;
@@ -445,7 +475,6 @@
       .link-sub {
         font-size: 12px;
         font-weight: 300;
-        font-style: italic;
         color: var(--muted);
         margin-top: 2px;
       }
@@ -466,7 +495,6 @@
       .footer {
         margin-top: 3.2rem;
         font-size: 11px;
-        font-style: italic;
         color: var(--muted);
         letter-spacing: 0.1em;
         animation: revealDown 1s 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -524,6 +552,26 @@
     </style>
   </head>
   <body>
+    <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
+    <svg class="glyph glyph-tl" width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+      <g fill="var(--gold)">
+        <circle cx="10" cy="10" r="3"/><circle cx="30" cy="10" r="3"/><circle cx="50" cy="10" r="3"/><circle cx="70" cy="10" r="3"/>
+        <circle cx="10" cy="30" r="3"/><circle cx="10" cy="50" r="3"/><circle cx="10" cy="70" r="3"/>
+        <circle cx="30" cy="50" r="3"/><circle cx="50" cy="50" r="3"/><circle cx="70" cy="30" r="3"/>
+      </g>
+      <rect x="60" y="60" width="40" height="40" rx="1" stroke="var(--gold)" stroke-width="1" opacity=".5"/>
+      <circle cx="110" cy="110" r="4" fill="var(--gold)"/>
+    </svg>
+    <svg class="glyph glyph-br" width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+      <g fill="var(--gold)">
+        <circle cx="10" cy="10" r="3"/><circle cx="30" cy="10" r="3"/><circle cx="50" cy="10" r="3"/><circle cx="70" cy="10" r="3"/>
+        <circle cx="10" cy="30" r="3"/><circle cx="10" cy="50" r="3"/><circle cx="10" cy="70" r="3"/>
+        <circle cx="30" cy="50" r="3"/><circle cx="50" cy="50" r="3"/><circle cx="70" cy="30" r="3"/>
+      </g>
+      <rect x="60" y="60" width="40" height="40" rx="1" stroke="var(--gold)" stroke-width="1" opacity=".5"/>
+      <circle cx="110" cy="110" r="4" fill="var(--gold)"/>
+    </svg>
+
     <button
       id="theme-toggle"
       class="theme-btn"
@@ -574,6 +622,7 @@
       </div>
 
       <h1 class="name">Florian Marianne</h1>
+      <p class="role"><span id="type-role"></span><span class="caret" aria-hidden="true">_</span></p>
       <p class="tagline">
         Étudiant en Licence Informatique &middot; Universit&eacute; de La R&eacute;union<br />IA
         &amp; dev
@@ -690,5 +739,44 @@
 
       <p class="footer">La R&eacute;union &middot; 2026</p>
     </main>
+
+    <script>
+      (function () {
+        var rm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var roleEl = document.getElementById("type-role");
+        if (roleEl) {
+          var roles = ["AI Engineer", "Dev Full-Stack", "Etudiant L3 - 974"];
+          if (rm) {
+            roleEl.textContent = roles[0];
+          } else {
+            var ri = 0, ci = 0, del = false;
+            (function type() {
+              var w = roles[ri];
+              roleEl.textContent = w.slice(0, ci);
+              var d = del ? 35 : 80;
+              if (!del && ci === w.length) { d = 1500; del = true; }
+              else if (del && ci === 0) { del = false; ri = (ri + 1) % roles.length; d = 500; }
+              else { ci += del ? -1 : 1; }
+              setTimeout(type, d);
+            })();
+          }
+        }
+        if (!rm) {
+          var c = document.getElementById("cursor-follower");
+          if (c) {
+            var cx = window.innerWidth / 2, cy = window.innerHeight / 2, tx = cx, ty = cy;
+            document.addEventListener("mousemove", function (e) { tx = e.clientX; ty = e.clientY; c.classList.add("visible"); });
+            document.addEventListener("mouseleave", function () { c.classList.remove("visible"); });
+            (function anim() {
+              cx += (tx - cx) * 0.08;
+              cy += (ty - cy) * 0.08;
+              c.style.left = cx + "px";
+              c.style.top = cy + "px";
+              requestAnimationFrame(anim);
+            })();
+          }
+        }
+      })();
+    </script>
   </body>
 </html>
