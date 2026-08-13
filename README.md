@@ -1,6 +1,6 @@
 # florian-links
 
-Page de liens personnelle minimaliste — une alternative auto-hébergée à Linktree, sans traqueurs ni dépendances.
+Page de liens personnelle minimaliste — une alternative auto-hébergée à Linktree, sans traqueurs ni bibliothèques externes.
 
 **Live →** [florianm974.github.io/florian-links](https://florianm974.github.io/florian-links)
 
@@ -20,7 +20,7 @@ Page de liens personnelle minimaliste — une alternative auto-hébergée à Lin
 - **SEO & Open Graph** — balises complètes pour un partage propre sur les réseaux
 - **Accessibilité** — navigation au clavier, `aria-label`, `aria-pressed`, focus visible
 - **Responsive** — adapté mobile et desktop
-- **Zéro dépendance** — aucun framework, aucune bibliothèque externe
+- **Zéro dépendance** — aucun framework, aucune bibliothèque externe (seules les polices Google Fonts sont chargées)
 
 ---
 
